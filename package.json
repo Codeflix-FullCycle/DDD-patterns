@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start:dev": "ts-node-dev -r tsconfig-paths/register --inspect -T --ignore-watch node_modules src/infra/server.ts",
-    "test": "yarn tsc -- --noEmit && jest",
+    "test": "yarn tsc --noEmit && jest",
     "tsc": "tsc"
   },
   "devDependencies": {
@@ -18,6 +18,10 @@
     "@swc/cli": "^0.1.57",
     "@swc/core": "^1.2.209",
     "@swc/jest": "^0.2.21",
+    "reflect-metadata": "^0.1.13",
+    "sequelize": "^6.21.3",
+    "sequelize-typescript": "^2.1.3",
+    "sqlite3": "^5.0.9",
     "ts-node-dev": "^2.0.0",
     "uuid": "^8.3.2"
   }

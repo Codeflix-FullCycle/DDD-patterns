@@ -29,14 +29,14 @@ describe("Customer unit test", () => {
 
   it("should active customer", () => {
     const customer = new Customer("1", "test", "test@test");
-    customer.address = new Address("test", "test", "test", "test");
+    customer.address = new Address("test", "test", "test", "test", 1);
     customer.activate();
     expect(customer.isActive()).toBe(true);
   })
 
   it("should active customer", () => {
     const customer = new Customer("1", "test", "test@test");
-    customer.address = new Address("test", "test", "test", "test");
+    customer.address = new Address("test", "test", "test", "test", 1);
     customer.activate();
     expect(customer.isActive()).toBe(true);
   })
@@ -49,7 +49,7 @@ describe("Customer unit test", () => {
   it("should deactivate customer", () => {
     const customer = new Customer("1", "test", "test@test");
     expect(customer.isActive()).toBe(false);
-    customer.address = new Address("test", "test", "test", "test");
+    customer.address = new Address("test", "test", "test", "test", 1);
     customer.activate();
     customer.deactivate();
     expect(customer.isActive()).toBe(false);
