@@ -9,8 +9,7 @@ export default class CustomerRepository implements CustomerRepositoryInterface {
     return allCustomers.map((customer) => {
       const customerEntity = new Customer(
         customer.id,
-        customer.name,
-        customer.email
+        customer.name
       );
 
       const address = new Address(
@@ -21,7 +20,7 @@ export default class CustomerRepository implements CustomerRepositoryInterface {
         customer.number
       );
       customerEntity.addRewardPoints(customer.rewardPoints);
-      customerEntity.address = address;
+      customerEntity.changeAddress(address);
 
       return customerEntity
     }
@@ -36,8 +35,7 @@ export default class CustomerRepository implements CustomerRepositoryInterface {
     });
     const customerEntity = new Customer(
       customer.id,
-      customer.name,
-      customer.email
+      customer.name
     );
 
     customerEntity.addRewardPoints(customer.rewardPoints);
@@ -50,30 +48,34 @@ export default class CustomerRepository implements CustomerRepositoryInterface {
       customer.number
     );
 
-    customerEntity.address = address;
+    customerEntity.changeAddress(address);
     return customerEntity
   }
 
   public async create(entity: Customer): Promise<void> {
-    await CustomerModel.create({
-      id: entity.id,
-      name: entity.name,
-      email: entity.email,
-      street: entity.address.street,
-      city: entity.address.city,
-      state: entity.address.state,
-      zip: entity.address.zip,
-      number: entity.address.number,
-      rewardPoints: entity.rewardPoints,
-      active: entity.active,
-    });
+
+
+    try {
+      await CustomerModel.create({
+        id: entity.id,
+        name: entity.name,
+        street: entity.address.street,
+        city: entity.address.city,
+        state: entity.address.state,
+        zip: entity.address.zip,
+        number: entity.address.number,
+        rewardPoints: entity.rewardPoints,
+        active: entity.active,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   public async update(entity: Customer): Promise<void> {
     await CustomerModel.update(
       {
         name: entity.name,
-        email: entity.email,
         street: entity.address.street,
         city: entity.address.city,
         state: entity.address.state,

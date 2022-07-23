@@ -30,7 +30,6 @@ describe("Customer repository", () => {
     const customer = new Customer(
       "1",
       "Customer 1",
-      "test@test.com"
     )
     const address = new Address(
       "Street 1",
@@ -40,7 +39,7 @@ describe("Customer repository", () => {
       1
     )
 
-    customer.address = address;
+    customer.changeAddress(address);
 
     await customerRepository.create(customer);
     const customerFromDb = await CustomerModel.findOne({
@@ -52,7 +51,6 @@ describe("Customer repository", () => {
     expect(customerFromDb).toBeDefined();
     expect(customerFromDb!.id).toBe("1");
     expect(customerFromDb!.name).toBe("Customer 1");
-    expect(customerFromDb!.email).toBe("test@test.com");
   });
 
   it("should update a customer", async () => {
@@ -60,7 +58,6 @@ describe("Customer repository", () => {
     const customer = new Customer(
       "1",
       "Customer 1",
-      "test@test.com"
     )
 
     const address = new Address(
@@ -71,7 +68,7 @@ describe("Customer repository", () => {
       1
     )
 
-    customer.address = address;
+    customer.changeAddress(address);
 
     await customerRepository.create(customer);
 
@@ -88,8 +85,6 @@ describe("Customer repository", () => {
     expect(customerFromDbUpdated).toBeDefined();
     expect(customerFromDbUpdated!.id).toBe("1");
     expect(customerFromDbUpdated!.name).toBe("Customer 1 Updated");
-    expect(customerFromDbUpdated!.email).toBe("test@test.com");
-
   });
 
   it("should delete a customer", async () => {
@@ -97,7 +92,6 @@ describe("Customer repository", () => {
     const customer = new Customer(
       "1",
       "Customer 1",
-      "test@test.com"
     )
 
     const address = new Address(
@@ -108,7 +102,7 @@ describe("Customer repository", () => {
       1
     )
 
-    customer.address = address;
+    customer.changeAddress(address);
 
     await customerRepository.create(customer);
 
@@ -128,7 +122,6 @@ describe("Customer repository", () => {
     const customer = new Customer(
       "1",
       "Customer 1",
-      "test@test.com"
     )
 
     const address = new Address(
@@ -139,7 +132,7 @@ describe("Customer repository", () => {
       1
     )
 
-    customer.address = address;
+    customer.changeAddress(address);
 
     await customerRepository.create(customer);
 
@@ -147,7 +140,6 @@ describe("Customer repository", () => {
 
     expect(customerFromDb.id).toBe("1");
     expect(customerFromDb.name).toBe("Customer 1");
-    expect(customerFromDb.email).toBe("test@test.com");
   });
 
   it("should find all customers", async () => {
@@ -155,7 +147,6 @@ describe("Customer repository", () => {
     const customer = new Customer(
       "1",
       "Customer 1",
-      "test@test.com"
     )
 
     const address = new Address(
@@ -166,14 +157,13 @@ describe("Customer repository", () => {
       1,
     )
 
-    customer.address = address;
+    customer.changeAddress(address);
 
     await customerRepository.create(customer);
 
     const customer2 = new Customer(
       "2",
       "Customer 2",
-      "test2@test.com"
     )
 
     const address2 = new Address(
@@ -184,7 +174,7 @@ describe("Customer repository", () => {
       2,
     )
 
-    customer2.address = address2;
+    customer2.changeAddress(address2);
 
     await customerRepository.create(customer2);
 
@@ -193,11 +183,9 @@ describe("Customer repository", () => {
     expect(customersFromDb.length).toBe(2);
     expect(customersFromDb[0].id).toBe("1");
     expect(customersFromDb[0].name).toBe("Customer 1");
-    expect(customersFromDb[0].email).toBe("test@test.com");
 
     expect(customersFromDb[1].id).toBe("2");
     expect(customersFromDb[1].name).toBe("Customer 2");
-    expect(customersFromDb[1].email).toBe("test2@test.com");
 
   });
 });

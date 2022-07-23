@@ -16,12 +16,12 @@ export default class CustomerModel extends Model {
   )
   declare name: string;
 
-  @Column(
-    {
-      allowNull: false
-    }
-  )
-  declare email: string;
+  // @Column(
+  //   {
+  //     allowNull: false
+  //   }
+  // )
+  // declare email: string;
 
   @Column(
     {

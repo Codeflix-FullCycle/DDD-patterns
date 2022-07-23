@@ -3,15 +3,15 @@ import Address from "./Address";
 export default class Customer {
   private _id: string
   private _name: string
-  private _email: string
+  // private _email: string
   private _address: Address
   private _active: boolean = false;
   private _rewardPoints: number = 0;
 
-  constructor(id: string, name: string, email: string) {
+  constructor(id: string, name: string) {
     this._id = id;
     this._name = name;
-    this._email = email;
+    // this._email = email;
 
     this.validate();
   }
@@ -32,15 +32,15 @@ export default class Customer {
     return this._active;
   }
 
-  get email() {
-    return this._email;
-  }
+  // get email() {
+  //   return this._email;
+  // }
 
   get rewardPoints(): number {
     return this._rewardPoints;
   }
 
-  set address(address: Address) {
+  changeAddress(address: Address) {
     this._address = address;
   }
 
@@ -52,9 +52,9 @@ export default class Customer {
     if (!this._name) {
       throw new Error('Name is required');
     }
-    if (!this._email) {
-      throw new Error('Email is required');
-    }
+    // if (!this._email) {
+    //   throw new Error('Email is required');
+    // }
     if (!this._id) {
       throw new Error('Id is required');
     }

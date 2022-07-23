@@ -27,7 +27,7 @@ describe("OrderService unit test", () => {
   it("should place an order", () => {
     const item1 = new OrderItem("i1", "Item 1", 10, "1", 1);
 
-    const customer = new Customer("c1", "John", "john@test.com");
+    const customer = new Customer("c1", "John");
 
     const order = OrderService.placeOrder(customer, [item1]);
 
